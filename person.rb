@@ -1,7 +1,7 @@
 class Person
   attr_accessor :id, :name, :age, :parent_permission
 
-  def initialize(id, name, age, parent_permission=true)
+  def initialize(id, name, age, parent_permission: true)
     @id = id
     @name = name
     @age = age
@@ -21,6 +21,6 @@ class Person
   end
 end
 
-person1 = Person.new(1, 'Lauren Smith', 25);
+person1 = Person.new(1, 'Lauren Smith', 25)
 
 puts person1.of_age?
