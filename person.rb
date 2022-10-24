@@ -12,12 +12,8 @@ class Person
     of_age? || @parent_permission
   end
 
-  def of_age?
-    if @age >= 18
-      puts true
-    else
-      puts false
-    end
+  def is_of_age?
+    @age >= 18
   end
 end
 
