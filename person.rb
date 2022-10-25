@@ -1,5 +1,7 @@
 require_relative './nameable'
-require_relative './decorator'
+require_relative './base_decorator'
+require_relative './capitalize_decorator'
+require_relative './trimmer_decorator'
 
 class Person < Nameable
   attr_accessor :id, :name, :age, :parent_permission
@@ -25,6 +27,9 @@ class Person < Nameable
   end
 end
 
-person1 = Person.new(1, 'Lauren Smith', 25)
-
-puts person1.of_age?
+person = Person.new(22, 'maximilianus')
+person.correct_name
+capitalized_person = CapitalizeDecorator.new(person)
+capitalized_person.correct_name
+capitalized_trimmed_person = TrimmerDecorator.new(capitalizedPerson)
+capitalized_trimmed_person.correct_name
