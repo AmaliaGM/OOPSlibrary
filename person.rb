@@ -6,7 +6,7 @@ require_relative './trimmer_decorator'
 class Person < Nameable
   attr_accessor :id, :name, :age, :parent_permission
 
-  def initialize(id, name, age, parent_permission: true)
+  def initialize(age, name, id, parent_permission: true)
     super()
     @id = id
     @name = name
@@ -27,9 +27,11 @@ class Person < Nameable
   end
 end
 
-person = Person.new(22, 'maximilianus')
+person = Person.new(22, 'maximilianus', 1)
 person.correct_name
 capitalized_person = CapitalizeDecorator.new(person)
 capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalizedPerson)
+capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 capitalized_trimmed_person.correct_name
+
+puts person.name
