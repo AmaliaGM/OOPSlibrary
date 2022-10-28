@@ -7,7 +7,7 @@ require_relative './rental'
 class Person < Nameable
   attr_accessor :id, :name, :age, :parent_permission
 
-  def initialize(age, name, parent_permission: true)
+  def initialize(age, name, id, parent_permission: true)
     super()
     @id = id
     @name = name
@@ -20,18 +20,12 @@ class Person < Nameable
     Rental.new(date, self, book)
   end
 
-  def can_use_services?
-    of_age? || @parent_permission
+  def correct_name
+    @name
   end
 
-  def self.list_all_people(people)
-    if people.empty?
-      puts 'There are no people yet! Kindly add a student or teacher.'
-    else
-      people.each_with_index do |person, index|
-        puts "#{index} ) [ #{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-      end
-    end
+  def can_use_services?
+    of_age? || @parent_permission
   end
 
   def self.create_person(people)
@@ -57,17 +51,4 @@ class Person < Nameable
   def of_age?
     @age >= 18
   end
-
-  def correct_name
-    @name
-  end
 end
-
-person = Person.new(22, 'maximilianus', 1)
-person.correct_name
-capitalized_person = CapitalizeDecorator.new(person)
-capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-capitalized_trimmed_person.correct_name
-
-puts person.name
