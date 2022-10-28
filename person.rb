@@ -53,10 +53,27 @@ class Person < Nameable
     puts 'Student created'
   end
 
+  def self.create_teacher
+    print 'Age: '
+    age = gets.chomp.to_i
+
+    print 'Name: '
+    name = gets.chomp
+
+    print 'Specialization: '
+    specialization = gets.chomp
+
+    teacher = Person.new(specialization, age, name)
+    persons << teacher
+
+    puts 'Teacher created'
+  end
+
   def self.create_person(persons)
     print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
     option = gets.chomp.to_i
     create_student.call
+    create_teacher.call
     case option
 
     when 1
