@@ -51,7 +51,7 @@ class FileHandler
     path_file = "#{SAVE_DATA}person.json"
     persons_data_array = []
     persons.map do |person|
-     # res = person.instance_of?(Student)
+      # res = person.instance_of?(Student)
       persons_data_array << { class: person.class, age: person.age, name: person.name,
                               classroom: person.classroom, id: person.id, parent_permission:
                               person.parent_permission }
