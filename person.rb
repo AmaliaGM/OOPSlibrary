@@ -3,6 +3,8 @@ require_relative './base_decorator'
 require_relative './capitalize_decorator'
 require_relative './trimmer_decorator'
 require_relative './rental'
+require_relative './student'
+require_relative './teacher'
 
 class Person < Nameable
   attr_accessor :id, :name, :age, :parent_permission
@@ -28,35 +30,36 @@ class Person < Nameable
     of_age? || @parent_permission
   end
 
+  def self.create_student
+    print 'Classroom: '
+    classroom = gets.chomp
+
+    print 'Age: '
+    age = gets.chomp.to_i
+
+    print 'Name: '
+    name = gets.chomp
+
+    print 'Has parent permission? [Y/N]: '
+    parent_permission_user = gets.chomp
+    has_permission = case parent_permission_user.downcase
+                     when 'y'
+                       true
+                     else
+                       false
+                     end
+
+    student = Person.new(classroom, age, name, parent_permission: has_permission)
+    persons << student
+
+    puts 'Student created'
+  end
+
   def self.create_person(persons)
     print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
     option = gets.chomp.to_i
 
-    def self.create_student
-      print 'Classroom: '
-      classroom = gets.chomp
-  
-      print 'Age: '
-      age = gets.chomp.to_i
-  
-      print 'Name: '
-      name = gets.chomp
-  
-      print 'Has parent permission? [Y/N]: '
-      parent_permission_user = gets.chomp
-      has_permission = case parent_permission_user.downcase
-                       when 'y'
-                         true
-                       else
-                         false
-                       end
-  
-      student = Person.new(classroom, age, name, parent_permission: has_permission)
-      persons << student
-
-      puts 'Student created'
-    end
-
+    create_student.call 
     case option
 
     when 1
