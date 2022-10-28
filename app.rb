@@ -37,35 +37,36 @@ class App
       save_files
     else
       puts 'invalid operator'
-  end
-end
-
-def list_all_persons
-  if @persons.empty?
-    puts 'There are no people yet! Kindly add a student or teacher.'
-  else
-    @persons.each_with_index do |person, index|
-      puts "#{index} ) [ #{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
   end
-end
 
-def list_all_books
-  if @books.empty?
-    puts 'There are no books yet! Kindly add books.'
-  else
-    @books.each_with_index do |book, index|
-      puts "#{index} ) Title: #{book.title}, Author: #{book.author}"
+  def list_all_persons
+    if @persons.empty?
+      puts 'There are no people yet! Kindly add a student or teacher.'
+    else
+      @persons.each_with_index do |person, index|
+        puts "#{index} ) [ #{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      end
     end
   end
-end
 
-  def run 
+  def list_all_books
+    if @books.empty?
+      puts 'There are no books yet! Kindly add books.'
+    else
+      @books.each_with_index do |book, index|
+        puts "#{index} ) Title: #{book.title}, Author: #{book.author}"
+      end
+    end
+  end
+
+  def run
     loop do
-    self.menu
-    user_input = gets.chomp
-    break if user_input == '7'
-    options(user_input) 
+      menu
+      user_input = gets.chomp
+      break if user_input == '7'
+
+      options(user_input)
     end
   end
 end
