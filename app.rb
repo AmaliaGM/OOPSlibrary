@@ -24,6 +24,8 @@ class App
     puts '7 - Exit'
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
+
   def options(input)
     case input
     when '1' then Book.list_all_books(@books)
@@ -70,3 +72,5 @@ class App
     end
   end
 end
+
+# rubocop:enable
