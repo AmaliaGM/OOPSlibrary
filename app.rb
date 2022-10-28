@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/CyclomaticComplexity
 require './book'
 require './person'
 require './rental'
@@ -23,8 +24,6 @@ class App
     puts '6 - List all retals for a given person id'
     puts '7 - Exit'
   end
-
-  # rubocop:disable Metrics/CyclomaticComplexity
 
   def options(input)
     case input
@@ -72,5 +71,4 @@ class App
     end
   end
 end
-
-# rubocop:enable
+# rubocop:enable Metrics/CyclomaticComplexity
