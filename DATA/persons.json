@@ -1,0 +1,32 @@
+[
+    {
+      "class": "Student",
+      "age": 700,
+      "name": "Nee",
+      "classroom": "React",
+      "id": 460,
+      "parent_permission": {
+        "parent_permission": true
+      }
+    },
+    {
+      "class": "Teacher",
+      "age": "Php",
+      "name": "Love",
+      "specialization": 900,
+      "id": 900,
+      "parent_permission": {
+        "parent_permission": true
+      }
+    },
+    {
+      "class": "Teacher",
+      "age": 75,
+      "name": "Chris",
+      "specialization": "Javascript",
+      "id": 874,
+      "parent_permission": {
+        "parent_permission": true
+      }
+    }
+  ]
