@@ -3,8 +3,6 @@ require_relative './base_decorator'
 require_relative './capitalize_decorator'
 require_relative './trimmer_decorator'
 require_relative './rental'
-require_relative './student'
-require_relative './teacher'
 
 class Person < Nameable
   attr_accessor :id, :name, :age, :parent_permission
@@ -58,7 +56,6 @@ class Person < Nameable
   def self.create_person(persons)
     print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
     option = gets.chomp.to_i
-
     create_student.call
     case option
 
