@@ -59,7 +59,7 @@ class Person < Nameable
     print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
     option = gets.chomp.to_i
 
-    create_student.call 
+    create_student.call
     case option
 
     when 1
