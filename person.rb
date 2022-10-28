@@ -28,20 +28,45 @@ class Person < Nameable
     of_age? || @parent_permission
   end
 
-  def self.create_person(people)
+  def self.create_person(persons)
     print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
     option = gets.chomp.to_i
+
+    def self.create_student
+      print 'Classroom: '
+      classroom = gets.chomp
+  
+      print 'Age: '
+      age = gets.chomp.to_i
+  
+      print 'Name: '
+      name = gets.chomp
+  
+      print 'Has parent permission? [Y/N]: '
+      parent_permission_user = gets.chomp
+      has_permission = case parent_permission_user.downcase
+                       when 'y'
+                         true
+                       else
+                         false
+                       end
+  
+      student = Person.new(classroom, age, name, parent_permission: has_permission)
+      persons << student
+
+      puts 'Student created'
+    end
 
     case option
 
     when 1
-      person = Student.create_student
+      person = create_student
     when 2
-      person = Teacher.create_teacher
+      person = create_teacher
     else
       puts 'Invalid input. Kindly type 1 or 2'
     end
-    people << person
+    persons << person
 
     print "#{person.class} created successfully\n"
   end

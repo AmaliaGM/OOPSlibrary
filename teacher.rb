@@ -4,7 +4,7 @@ class Teacher < Person
   attr_accessor :specialization
 
   def initialize(specialization, age, name, id = SecureRandom.uuid)
-    super(age, name, id,)
+    super(age, name, id)
     @specialization = specialization
   end
 
