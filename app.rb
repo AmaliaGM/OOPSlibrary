@@ -27,10 +27,10 @@ class App
 
   def options(input)
     case input
-    when '1' then Book.list_all_books(@books)
+    when '1' then list_all_books
     when '2' then list_all_persons
-    when '3' then Book.create_book(@books)
-    when '4' then Person.create_person(@persons)
+    when '3' then Person.create_person(@persons)
+    when '4' then Book.create_book(@books)
     when '5' then Rental.create_rental(@books, @persons, @rentals)
     when '6' then Rental.list_all_rentals_for_id(@rentals)
     when '7'
