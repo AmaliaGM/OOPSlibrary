@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/MethodLength
 require_relative './nameable'
 require_relative './base_decorator'
 require_relative './capitalize_decorator'
@@ -54,7 +53,7 @@ class Person < Nameable
     classroom = gets.chomp
 
     print 'Age: '
-    age = gets.chomp.to_i
+    age = Interger(gets.chomp)
 
     print 'Name: '
     name = gets.chomp
