@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/MethodLength
 require_relative './nameable'
 require_relative './base_decorator'
 require_relative './capitalize_decorator'
@@ -7,7 +8,7 @@ require_relative './rental'
 class Person < Nameable
   attr_accessor :id, :name, :age, :parent_permission
 
-  def initialize(age, name, id, parent_permission: true)
+  def initialize(age, id, parent_permission: true)
     super()
     @id = id
     @name = name
@@ -50,13 +51,13 @@ class Person < Nameable
 
   def self.create_student
     print 'Classroom: '
-    gets.chomp
+    classroom = gets.chomp
 
     print 'Age: '
-    gets.chomp.to_i
+    age = gets.chomp.to_i
 
     print 'Name: '
-    gets.chomp
+    name = gets.chomp
 
     print 'Has parent permission? [Y/N]: '
     parent_permission_user = gets.chomp
@@ -67,18 +68,20 @@ class Person < Nameable
       false
     end
 
+    person = Student.new(classroom, age, name, parent_permission)
+    @persons << person
     puts 'Student created'
   end
 
   def self.create_teacher
     print 'Age: '
-    gets.chomp.to_i
+    age = gets.chomp.to_i
 
     print 'Name: '
-    gets.chomp
+    name = gets.chomp
 
     print 'Specialization: '
-    gets.chomp
+    specialization = gets.chomp
 
     puts 'Teacher created'
   end
@@ -89,3 +92,4 @@ class Person < Nameable
     @age >= 18
   end
 end
+# rubocop:enable Metrics/MethodLength
