@@ -28,64 +28,59 @@ class Person < Nameable
     of_age? || @parent_permission
   end
 
-  def self.create_student
-    print 'Classroom: '
-    classroom = gets.chomp
-
-    print 'Age: '
-    age = gets.chomp.to_i
-
-    print 'Name: '
-    name = gets.chomp
-
-    print 'Has parent permission? [Y/N]: '
-    parent_permission_user = gets.chomp
-    has_permission = case parent_permission_user.downcase
-                     when 'y'
-                       true
-                     else
-                       false
-                     end
-
-    student = Person.new(classroom, age, name, parent_permission: has_permission)
-    persons << student
-
-    puts 'Student created'
-  end
-
-  def self.create_teacher
-    print 'Age: '
-    age = gets.chomp.to_i
-
-    print 'Name: '
-    name = gets.chomp
-
-    print 'Specialization: '
-    specialization = gets.chomp
-
-    teacher = Person.new(specialization, age, name)
-    persons << teacher
-
-    puts 'Teacher created'
-  end
-
   def self.create_person(persons)
     print 'Do you want to create a student (1) or teacher (2) [Input a number]: '
     option = gets.chomp.to_i
-    create_student.call
-    create_teacher.call
+
     case option
 
     when 1
+
       person = create_student
     when 2
+
       person = create_teacher
     else
       puts 'Invalid input. Kindly type 1 or 2'
     end
     persons << person
 
-    print "#{person.class} created successfully\n"
+    # print "#{person.class} created successfully\n"
+  end
+
+  def self.create_student
+    print 'Classroom: '
+    gets.chomp
+
+    print 'Age: '
+    gets.chomp.to_i
+
+    print 'Name: '
+    gets.chomp
+
+    print 'Has parent permission? [Y/N]: '
+    parent_permission_user = gets.chomp
+    case parent_permission_user.downcase
+    when 'y'
+      true
+    else
+      false
+    end
+
+    puts 'Student created'
+  end
+
+  def self.create_teacher
+    print 'Age: '
+    gets.chomp.to_i
+
+    print 'Name: '
+    gets.chomp
+
+    print 'Specialization: '
+    gets.chomp
+
+    puts 'Teacher created'
   end
 
   private
