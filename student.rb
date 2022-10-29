@@ -7,7 +7,7 @@ class Student < Person
   end
 
   def play_hooky
-    "¯\(ツ)/¯"
+    '¯\(ツ)/¯'
   end
 
   def to_json(*args)
