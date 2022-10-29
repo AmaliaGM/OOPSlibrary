@@ -18,7 +18,7 @@ class FileHandler
   def self.write_book(books)
     return if books.empty?
 
-    path_file = "#{SAVE_DATA}book.json"
+    path_file = "#{SAVE_DATA}books.json"
     data_books = books.map do |book|
       { id: book.id, title: book.title, author: book.author }
     end
@@ -26,7 +26,7 @@ class FileHandler
   end
 
   def self.read_person(persons)
-    path = "#{SAVE_DATA}person.json"
+    path = "#{SAVE_DATA}persons.json"
     return unless File.exist?(path)
 
     persons_file = File.open(path)
