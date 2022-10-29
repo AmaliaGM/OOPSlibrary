@@ -74,7 +74,7 @@ class Person < Nameable
 
   def self.create_teacher
     print 'Age: '
-    age = gets.chomp.to_i
+    age = Interger(gets.chomp)
 
     print 'Name: '
     name = gets.chomp
