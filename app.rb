@@ -1,74 +1,148 @@
-# rubocop:disable Metrics/CyclomaticComplexity
-require './book'
-require './person'
-require './rental'
-require './json_handler'
-require './refactor'
+require 'json'
 
-class App
-  attr_reader :books, :persons, :rentals
+# rubocop:disable Metrics/ModuleLength
+module App
+  INPUT_MSG = 'Enter an option number here: '.freeze
+  ENTER_MSG = 'Press ENTER to continue'.freeze
 
-  def initialize
-    @persons = []
-    @books = []
-    @rentals = []
+  def enter_msg
+    print ENTER_MSG
+    gets
+    puts
   end
 
-  def menu
-    puts 'Please choose an option by entering a number'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all retals for a given person id'
-    puts '7 - Exit'
+  def display_books
+    puts 'List of books:'
+    puts 'There is no book registered!' if @books.empty?
+    @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
   end
 
-  def options(input)
-    case input
-    when '1' then list_all_books
-    when '2' then list_all_persons
-    when '3' then Person.create_person(@persons)
-    when '4' then Book.create_book(@books)
-    when '5' then Rental.create_rental(@books, @persons, @rentals)
-    when '6' then Rental.list_all_rentals_for_id(@rentals)
-    when '7'
-      puts 'Thank you for using this app!'
-      save_files
-    else
-      puts 'invalid operator'
+  def display_people
+    puts 'List of people:'
+    puts 'There is no people registered!' if @people.empty?
+    @people.each_with_index do |person, index|
+      puts "#{index}) Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"
     end
   end
 
-  def list_all_persons
-    if @persons.empty?
-      puts 'There are no people yet! Kindly add a student or teacher.'
+  def create_person(decision, age, name)
+    case decision
+    when 1
+      create_student_input(age, name)
     else
-      @persons.each_with_index do |person, index|
-        puts "#{index} ) [ #{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      create_teacher_input(age, name)
+    end
+    puts
+  end
+
+  def create_book(title, author)
+    @books << Book.new(title, author)
+    puts
+    puts 'Book created successfully'
+    puts
+  end
+
+  def create_rental(book_index, person_index, date)
+    @rentals << Rental.new(date, @people[person_index], @books[book_index])
+    puts 'Rental created successfully'
+    puts
+  end
+
+  def display_rentals(person_input)
+    renter = @people.select { |person| person.id == (person_input) }
+    if renter.empty?
+      puts 'No rentals found for this ID'
+      user_rental_id_input
+    else
+      puts "Rentals of #{renter[0].name}:"
+      puts 'There is no book rentered!' if renter[0].rentals.empty?
+      renter[0].rentals.map { |rental| puts "Book: #{rental.book.title}, Rented on: #{rental.date}\n" }
+      enter_msg
+    end
+  end
+
+  private
+
+  def create_student(age, name, permission)
+    @people << Student.new(age, name, permission)
+    puts 'Student created successfully'
+    puts
+  end
+
+  def create_teacher(age, name, specialty)
+    @people << Teacher.new(specialty, age, name)
+    puts
+    puts 'Teacher created successfully'
+    puts
+  end
+
+  def load_files
+    @books = load_books
+    load_persons
+    load_rentals(@persons, @books)
+  end
+
+  def load_books
+    if File.exist?('books.json')
+      JSON.parse(File.read('books.json'), create_addititons: true)
+    else
+      []
+    end
+  end
+
+  def load_persons
+    if File.exist?('persons.json')
+      JSON.parse(File.read('persons.json')).map do |person|
+        if person['json_class'] == 'Student'
+          load_student(person, 'learn to code')
+        else
+          load_teacher(person)
+        end
       end
-    end
-  end
-
-  def list_all_books
-    if @books.empty?
-      puts 'There are no books yet! Kindly add books.'
     else
-      @books.each_with_index do |book, index|
-        puts "#{index} ) Title: #{book.title}, Author: #{book.author}"
-      end
+      @person = []
     end
   end
 
-  def run
-    loop do
-      menu
-      user_input = gets.chomp
-      break if user_input == '7'
+  def load_teacher(person)
+    id = person['id'].to_i
+    name = person['name']
+    age = person['age']
+    specialization = person['specialization']
 
-      options(user_input)
+    teacher = Teacher.new(age, specialization, name)
+    teacher.id = id
+    @persons.push(teacher)
+  end
+
+  def load_student(person, classroom)
+    id = person['id'].to_i
+    name = person['name']
+    age = person['age']
+    parent_permission = person['parent_permission']
+
+    student = Student.new(age, classroom, name, parent_permission)
+    student.id = id
+    @person.push(student)
+  end
+
+  def load_rentals(person, books)
+    if File.exist?('rentals.json')
+      JSON.parse(File.read('rentals.json')).map do |rental|
+        book = books.find { |curr_book| curr_book.title == rental['book'] }
+        person = person.find { |curr_person| curr_person.id == rental['person'].to_i }
+
+        @rentals.push(Rental.new(rental['date'], person, book))
+      end
+    else
+      @rentals = []
     end
+  end
+
+  def save_files
+    File.write('books.json', JSON.generate(@books)) if @books.any?
+    File.write('persons.json', JSON.generate(@people)) if @people.any?
+    File.write('rentals.json', JSON.generate(@rentals)) if @rentals.any?
   end
 end
-# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/ModuleLength

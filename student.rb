@@ -1,36 +1,23 @@
+# rubocop: disable Style/OptionalBooleanParameter
 require_relative './person'
 
 class Student < Person
-  attr_reader :classroom, :parent_permission
-
-  def initialize(classroom, age, name, id = SecureRandom.uuid, parent_permission: true)
-    super(age, name, id, parent_permission: parent_permission)
-    @classroom = classroom
+  def initialize(age, name = 'Unknown', parent_permission = true)
+    super(age, name, parent_permission)
   end
 
   def play_hooky
-    '¯\(ツ)/¯'
+    "¯\(ツ)/¯"
   end
 
-  def self.create_student
-    print 'Classroom: '
-    classroom = gets.chomp
-
-    print 'Age: '
-    age = gets.chomp.to_i
-
-    print 'Name: '
-    name = gets.chomp
-
-    print 'Has parent permission? [Y/N]: '
-    parent_permission_user = gets.chomp
-    has_permission = case parent_permission_user.downcase
-                     when 'y'
-                       true
-                     else
-                       false
-                     end
-
-    Student.new(classroom, age, name, parent_permission: has_permission)
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'id' => id,
+      'name' => name,
+      'age' => age,
+      'parent_permission' => @parent_permission
+    }.to_json(*args)
   end
 end
+# rubocop: enable Style/OptionalBooleanParameter
