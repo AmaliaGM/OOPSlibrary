@@ -82,6 +82,8 @@ class Person < Nameable
     print 'Specialization: '
     specialization = gets.chomp
 
+    person = Teacher.new(age, name, specialization)
+    @persons << person
     puts 'Teacher created'
   end
 
@@ -91,4 +93,3 @@ class Person < Nameable
     @age >= 18
   end
 end
-# rubocop:enable Metrics/MethodLength
