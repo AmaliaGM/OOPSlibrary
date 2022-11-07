@@ -2,7 +2,7 @@
 
 # Project Name
 
-> Description the project.
+> In this project, we used newly acquired knowledge and refactor your previous code.
 
 
 ## Built With
@@ -24,33 +24,40 @@
 
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
 ### Setup
 
-### Install
+1. Create an empty folder in your computer to store the clone.
 
-### Usage
+2. Copy the following link and paste it into your VSCode or your terminal:
 
-### Run tests
+> https://github.com/AmaliaGM/OOPSlibrary.git  
 
-### Deployment
+3. Store it in the file you created before.
 
+4. Create a new branch for working and make changes to adapt it according to your requirements.
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Amalia Gomez**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@AmaliaGM](https://github.com/AmaliaGM)
+- Twitter: [@AmaliaGomezMoro](https://twitter.com/AmaliaGomezMoro)
+- LinkedIn: [Maria-Amalia-Gomez-Moro](https://linkedin.com/in/Maria-Amalia-Gomez-Moro
 
-👤 **Author2**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+👤 **Federico Luna**
+
+- GitHub: [@Flunavgt](https://github.com/Flunavgt)
+- Twitter: [@flunavgt](https://twitter.com/flunavgt)
+- LinkedIn: [federico-luna-Gt](https://linkedin.com/in/federico-luna-Gt)
+
+
+👤 **Diego Hernández**
+
+- GitHub: [@diehoh40](https://github.com/diegoh40)
+- Twitter: [@Diegoart80](https://twitter.com/Diegoart80)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/diegoarturoh/)
 
 ## 🤝 Contributing
 
