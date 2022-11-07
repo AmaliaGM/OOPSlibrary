@@ -1,8 +1,7 @@
-# rubocop: disable Style/OptionalBooleanParameter
 require_relative './person'
 
 class Student < Person
-  def initialize(age, name = 'Unknown', parent_permission = true)
+  def initialize(age, name = 'Unknown', parent_permission)
     super(age, name, parent_permission)
   end
 
@@ -20,4 +19,3 @@ class Student < Person
     }.to_json(*args)
   end
 end
-# rubocop: enable Style/OptionalBooleanParameter
