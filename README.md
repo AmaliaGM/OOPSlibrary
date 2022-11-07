@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# School Library
 
 > In this project, we used newly acquired knowledge and refactor your previous code.
 
