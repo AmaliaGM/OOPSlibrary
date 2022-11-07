@@ -15,13 +15,6 @@ class Main
     @books = []
     @people = []
     @rentals = []
-    # @user_person_input = user_person_input
-    # @user_book_input = user_book_input
-    # @user_rental_input = user_rental_input
-    # @user_rental_id_input = user_rental_id_input
-    # @create_student_input = create_student_input
-    # @create_teacher_input = create_teacher_input
-
     puts 'Welcome to School Library App!'
     puts
   end
