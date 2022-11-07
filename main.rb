@@ -20,6 +20,13 @@ class Main
   end
 
   def show_options
+    sleep(1)
+    system('clear')
+    system('cls')
+    puts '     ███ ███ ███ ╬╬ █╬ █ ██▄ ███ ███ ███ █╬█'
+    puts '     █╬█ █╬█ █▄█ ╬╬ █╬ █ █▄█ █▄╬ █▄█ █▄╬ █▄█'
+    puts '     █▄█ █▄█ █╬╬ ╬╬ ██ █ █▄█ █╬█ █╬█ █╬█ ╬█╬'
+    puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'
