@@ -19,9 +19,7 @@ module App
   def display_people
     puts 'List of people:'
     puts 'There is no people registered!' if @people.empty?
-    @people.each_with_index do |person, index|
-      puts "#{index}) Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"
-    end
+    @people.each_with_index { |person, index| puts"#{index}) Name:#{person.name},Age:#{person.age},ID:#{person.id}" }
   end
 
   def create_person(decision, age, name)
