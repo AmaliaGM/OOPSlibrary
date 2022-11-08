@@ -1,12 +1,6 @@
 [
     {
-      "id": 506,
-      "title": "The HuckleBerry Finn Adventures",
-      "author": "Mark Twain"
-    },
-    {
-      "id": 102,
-      "title": "Tom Sawyer Adventures",
-      "author": "Mark Twain"
+      "Title": "My title",
+      "Author": "My author"
     }
   ]

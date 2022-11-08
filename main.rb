@@ -4,29 +4,33 @@ require_relative 'classroom'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'app'
+require_relative 'appbis'
 require_relative 'actions'
+require 'json'
+require_relative 'load_data'
 
 class Main
   include App
+  include AppBis
   include Actions
 
   def initialize
     @main_ans = 0
-    @books = []
-    @people = []
-    @rentals = []
-    # @user_person_input = user_person_input
-    # @user_book_input = user_book_input
-    # @user_rental_input = user_rental_input
-    # @user_rental_id_input = user_rental_id_input
-    # @create_student_input = create_student_input
-    # @create_teacher_input = create_teacher_input
-
+    @books = LoadData.read_books || []
+    @people = LoadData.read_people || []
+    @rentals = LoadData.read_rentals(@books, @people) || []
     puts 'Welcome to School Library App!'
     puts
   end
 
   def show_options
+    sleep(1)
+    system('clear')
+    system('cls')
+    puts '     ███ ███ ███    █  █ ██▄ ███ ███ ███ █ █'
+    puts '     █ █ █ █ █▄█    █  █ █▄█ █▄/ █▄█ █▄/ █▄█'
+    puts '     █▄█ █▄█ █      ██ █ █▄█ █ █ █ █ █ █  █ '
+    puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'
@@ -38,7 +42,6 @@ class Main
     print INPUT_MSG
   end
 
-  # rubocop:disable Metrics
   def select_option
     case @main_ans
     when 1
@@ -49,6 +52,13 @@ class Main
       enter_msg
     when 3
       user_person_input
+    else
+      select_op2
+    end
+  end
+
+  def select_op2
+    case @main_ans
     when 4
       user_book_input
     when 5
@@ -62,8 +72,6 @@ class Main
       end
     end
   end
-
-  # rubocop:enable Metrics-
 end
 library = Main.new
 library.main
