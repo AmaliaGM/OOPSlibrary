@@ -1,5 +1,5 @@
 require 'json'
-  
+
 module AppBis
   INPUT_MSG = 'Enter an option number here: '.freeze
   ENTER_MSG = 'Press ENTER to continue'.freeze

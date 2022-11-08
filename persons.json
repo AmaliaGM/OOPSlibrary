@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"json_class":"Teacher","id":17,"name":"dfadsf","age":23,"specialization":"fsdaf"},{"json_class":"Student","id":428,"name":"sdfadsf","age":23,"parent_permission":true}]
-=======
-[{"json_class":"Student","id":138,"name":"fed","age":12,"parent_permission":true}]
->>>>>>> e97caddf797fd6fb3645a66544ff39de50a39871
+[{"json_class":"Teacher","id":309,"name":"kjhkl","age":12,"specialization":"kj;klj;l"},{"json_class":"Teacher","id":596,"name":"kj;lkj","age":67,"specialization":"kjl;kj"},{"json_class":"Student","id":673,"name":"kjhlkj","age":7,"parent_permission":true}]
