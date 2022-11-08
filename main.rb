@@ -6,6 +6,8 @@ require_relative 'rental'
 require_relative 'app'
 require_relative 'appbis'
 require_relative 'actions'
+require 'json'
+require_relative 'load_data'
 
 class Main
   include App
@@ -14,9 +16,9 @@ class Main
 
   def initialize
     @main_ans = 0
-    @books = []
-    @people = []
-    @rentals = []
+    @books = LoadData.read_books || []
+    @people = LoadData.read_people || []
+    @rentals = LoadData.read_rentals(@books, @people) || []
     puts 'Welcome to School Library App!'
     puts
   end
