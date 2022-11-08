@@ -38,7 +38,6 @@ class Main
     print INPUT_MSG
   end
 
-  # rubocop:disable Metrics
   def select_option
     case @main_ans
     when 1
@@ -49,6 +48,13 @@ class Main
       enter_msg
     when 3
       user_person_input
+    else
+      select_op2
+    end
+  end
+
+  def select_op2
+    case @main_ans
     when 4
       user_book_input
     when 5
@@ -62,8 +68,6 @@ class Main
       end
     end
   end
-
-  # rubocop:enable Metrics-
 end
 library = Main.new
 library.main
