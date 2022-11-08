@@ -4,10 +4,12 @@ require_relative 'classroom'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'app'
+require_relative 'appbis'
 require_relative 'actions'
 
 class Main
   include App
+  include AppBis
   include Actions
 
   def initialize
@@ -23,9 +25,9 @@ class Main
     sleep(1)
     system('clear')
     system('cls')
-    puts '     ███ ███ ███ ╬╬ █╬ █ ██▄ ███ ███ ███ █╬█'
-    puts '     █╬█ █╬█ █▄█ ╬╬ █╬ █ █▄█ █▄╬ █▄█ █▄╬ █▄█'
-    puts '     █▄█ █▄█ █╬╬ ╬╬ ██ █ █▄█ █╬█ █╬█ █╬█ ╬█╬'
+    puts '     ███ ███ ███    █  █ ██▄ ███ ███ ███ █ █'
+    puts '     █ █ █ █ █▄█    █  █ █▄█ █▄/ █▄█ █▄/ █▄█'
+    puts '     █▄█ █▄█ █      ██ █ █▄█ █ █ █ █ █ █  █ '
     puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
