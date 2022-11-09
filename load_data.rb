@@ -2,7 +2,7 @@ require 'json'
 
 class LoadData
   def self.read_books
-    file_path = './DATA/books.json'
+    file_path = 'books.json'
     return unless File.exist?(file_path)
 
     books_file = File.open(file_path)
