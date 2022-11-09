@@ -1,8 +1,11 @@
 require 'json'
+require './write_data'
+
 
 module App
   INPUT_MSG = 'Enter an option number here: '.freeze
   ENTER_MSG = 'Press ENTER to continue'.freeze
+  include WriteData
 
   def enter_msg
     print ENTER_MSG
@@ -13,7 +16,7 @@ module App
   def display_books
     puts 'List of books:'
     puts 'There is no book registered!' if @books.empty?
-    @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
+    @books.each_with_index { |book, index| puts "#{index} #{book['title']} #{book['author']} "  }
   end
 
   def display_people
@@ -33,7 +36,12 @@ module App
   end
 
   def create_book(title, author)
-    @books << Book.new(title, author)
+    new_book = Book.new(title, author)
+    @books << {
+      title: new_book.title,
+      author: new_book.author
+    }
+    books_write(@books)
     puts
     puts 'Book created successfully'
     puts

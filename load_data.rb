@@ -1,16 +1,16 @@
-class LoadData
-  def self.read_books
+module LoadData
+  def read_books
     file_path = './DATA/books.json'
     return unless File.exist?(file_path)
 
     books_file = File.open(file_path)
     books = []
-    JSON.parse(books_file.read).each { |book| books << Book.new(book['title'], book['author'], book['id']) }
+    JSON.parse(books_file.read).each { |book| books << Book.new(book['Title'], book['Author'], book['id']) }
     books_file.close
     books
   end
 
-  def self.read_people
+  def read_people
     file_path = './DATA/people.json'
     return unless File.exist?(file_path)
 

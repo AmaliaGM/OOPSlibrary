@@ -4,10 +4,10 @@ require './rental'
 require 'json'
 
 class FileHandler
-  SAVE_DATA = './SAVE_DATA/'.freeze
+  SAVE_DATA = './DATA/'.freeze
 
   def self.read_book(books)
-    path = "#{SAVE_DATA}book.json"
+    path = "#{SAVE_DATA}books.json"
     return unless File.exist?(path)
 
     book_file = File.open(path)
@@ -26,7 +26,7 @@ class FileHandler
   end
 
   def self.read_person(persons)
-    path = "#{SAVE_DATA}persons.json"
+    path = "#{SAVE_DATA}people.json"
     return unless File.exist?(path)
 
     persons_file = File.open(path)
@@ -48,7 +48,7 @@ class FileHandler
   def self.write_person(persons)
     return if persons.empty?
 
-    path_file = "#{SAVE_DATA}person.json"
+    path_file = "#{SAVE_DATA}people.json"
     persons_data_array = []
     persons.map do |person|
       # res = person.instance_of?(Student)
@@ -76,14 +76,14 @@ def self.write_rentals(rentals)
       parent_permission: rental.person.parent_permission
     }
   end
-  File.write('./SAVE_DATA/rental.json', JSON.pretty_generate(rentals_data_array))
+  File.write('./SAVE_DATA/rentals.json', JSON.pretty_generate(rentals_data_array))
 end
 
 def self.read_rentals
   array_rentals = []
-  return array_rentals unless File.exist?('./SAVE_DATA/rental.json')
+  return array_rentals unless File.exist?('./SAVE_DATA/rentals.json')
 
-  rentals_file = File.open('./SAVE_DATA/rental.json')
+  rentals_file = File.open('./SAVE_DATA/rentals.json')
   JSON.parse(rentals_file.read).each do |rental|
     single_person = Person.new(rental['age'], rental['name'], rental['parent_permission'])
     single_person.id = rental['id']
